@@ -34,7 +34,7 @@ jobs:
           - name: Get code
             uses: actions/checkout@v4
           - name: Get build artifacts
-            uses: actions/download-artifacts
+            uses: actions/download-artifacts@v4
             with: 
               name: dist-files
           - name: Output contents
