@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon app.ts"
+    "start:dev": "nodemon app.ts",
+    "start:prod": "node ./dist/app.js",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
