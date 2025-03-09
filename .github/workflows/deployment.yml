@@ -12,26 +12,32 @@ jobs:
                 node-version: 18
             - name: Install dependencies
               run: npm ci
-    deploy:
+
+    build: 
       needs: test
+      runs-on: ubuntu-latest
+      steps:
+        - name: Get code
+          uses: actions/checkout@4
+        - name: Build project
+          run: npm run build
+        - name: Upload artifacts
+          uses: actions/upload-artifact@v4
+          with:
+            name: dist-files
+            path: dist
+
+    deploy:
+      needs: build
       runs-on: ubuntu-latest
       steps:
           - name: Get code
             uses: actions/checkout@v4
-          - name: Install Nodejs
-            uses: actions/setup-node@v4
-            with:
-              node-version: 18
-          - name: Install dependencies
-            run: npm ci
-          - name: Build project
-            run: npm run build
-          - name: Upload artifacts
-            uses: actions/upload-artifact@v4
-            with:
+          - name: Get build artifacts
+            uses: actions/download-artifacts
+            with: 
               name: dist-files
-              path: |
-                dist
-                package.json
+          - name: Output contents
+            run: ls
           - name: Deploy
             run: echo "Deploying...." && echo "Deployed success."
