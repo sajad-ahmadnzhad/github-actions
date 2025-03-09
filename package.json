@@ -1,0 +1,29 @@
+{
+  "name": "github-actions",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sajad-ahmadnzhad/github-actions.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sajad-ahmadnzhad/github-actions/issues"
+  },
+  "homepage": "https://github.com/sajad-ahmadnzhad/github-actions#readme",
+  "description": "",
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "nodemon": "^3.1.9",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
