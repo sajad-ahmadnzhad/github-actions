@@ -32,6 +32,8 @@ jobs:
     build:
       needs: test
       uses: sajad-ahmadnzhad/github-actions/.github/workflows/reusable.yaml@main
+      with:
+        artifact-name: custom-dist-file
 
     deploy:
       needs: build
