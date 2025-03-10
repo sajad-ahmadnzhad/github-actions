@@ -60,7 +60,7 @@ jobs:
           - name: Output contents
             run: ls
           - name: Deploy
-            run: echo "Deploying...." && echo "Deployed success. Server running on port ${{env.PORT}}"
+            run: echo "Deploying...." && exit 1 && echo "Deployed success. Server running on port ${{env.PORT}}"
     report:
       needs: [deploy, test]
       if: failure()
