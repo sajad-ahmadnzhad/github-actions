@@ -28,29 +28,11 @@ jobs:
               key: deps-node-modules-${{hashFiles('**/package-lock.json')}}
           - name: Install dependencies
             run: npm ci
-
-    build: 
-      runs-on: ubuntu-latest
-      steps:
-        - name: Get code
-          uses: actions/checkout@v4
-        - name: Cache dependencies
-          uses: actions/cache@v4
-          with:
-            path: ~/.npm
-            key: deps-node-modules-${{hashFiles('**/package-lock.json')}}
-        - name: Install dependencies
-          run: npm ci
-        - name: Build project
-          run: npm run build
-        - name: Upload artifacts
-          uses: actions/upload-artifact@v4
-          with:
-            name: dist-files
-            path: dist
+    call_workflow:
+      uses: .github/workflows/reusable.yaml
 
     deploy:
-      needs: build
+      needs: call_workflow
       runs-on: ubuntu-latest
       steps:
           - name: Get code
