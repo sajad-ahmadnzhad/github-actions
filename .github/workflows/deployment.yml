@@ -1,9 +1,6 @@
 name: Deploy Express Project
 on: [push ,workflow_dispatch]
 
-env:
-  PORT: ${{ secrets.PORT }}
-
 jobs:
     test:
         runs-on: ubuntu-latest
@@ -64,3 +61,12 @@ jobs:
             run: ls
           - name: Deploy
             run: echo "Deploying...." && echo "Deployed success. Server running on port ${{env.PORT}}"
+    report:
+      needs: [deploy, test]
+      if: failure()
+      runs-on: ubuntu-latest
+      steps:
+        - name: Output information
+          run: |
+            echo "Something want wrong"
+            echo "{{ github }}"
