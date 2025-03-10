@@ -2,7 +2,7 @@ name: Deploy Express Project
 on: [push ,workflow_dispatch]
 
 env:
-  PORT: ${{ secrets.PORT }}
+  PORT: ${{ secrets.PORT.PORT }}
 
 jobs:
     test:
