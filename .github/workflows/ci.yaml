@@ -28,6 +28,8 @@ jobs:
         run: |
           if ! git diff --quiet; then
             echo "needs_commit=true" >> $GITHUB_ENV
+          else 
+            echo "needs_commit=false" >> $GITHUB_ENV
           fi
 
       - name: Commit Formatting Changes
