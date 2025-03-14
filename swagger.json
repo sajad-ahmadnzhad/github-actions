@@ -21,6 +21,16 @@
         }
       }
     },
+    "/save": {
+      "post": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/message": {
       "get": {
         "description": "",
