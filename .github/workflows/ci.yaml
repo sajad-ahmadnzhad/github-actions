@@ -45,7 +45,7 @@ jobs:
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
 
       - name: Generate Swagger JSON
-        run: npx swagger-autogen
+        run: npx ts-node swagger.ts
 
       - name: Commit and push Swagger file
         run:
