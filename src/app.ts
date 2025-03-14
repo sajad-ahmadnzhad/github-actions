@@ -1,14 +1,13 @@
 import express from 'express';
 import { config } from 'dotenv';
-import swaggerUi from "swagger-ui-express"
+import swaggerUi from 'swagger-ui-express';
 
 config();
 
 const app = express();
 
-app.use(express.json())
-app.use("/docs", swaggerUi.serve, swaggerUi.setup(require("../swagger.json")))
-
+app.use(express.json());
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(require('../swagger.json')));
 
 app.get('/data', (req, res) => {
   res.json({
