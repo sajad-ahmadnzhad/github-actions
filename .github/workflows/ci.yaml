@@ -45,11 +45,11 @@ jobs:
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
 
       - name: Generate Swagger JSON
-        run: npx ts-node swagger.ts
+        run: npx ts-node src/swagger.ts
 
       - name: Commit and push Swagger file
         run:
-          git add swagger.json
+          git add src/swagger.json
           git commit -m "Generate Swagger docs by Github Actions Bot" || echo "No changes to commit"
           git push 
 
