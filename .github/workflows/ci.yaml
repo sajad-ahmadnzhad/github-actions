@@ -48,7 +48,7 @@ jobs:
         run: npx ts-node src/swagger.ts
 
       - name: Commit and push Swagger file
-        run:
+        run: |
           git add .
           git commit -m "Generate Swagger docs by Github Actions Bot" || echo "No changes to commit"
           git push 
