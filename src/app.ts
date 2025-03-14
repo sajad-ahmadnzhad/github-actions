@@ -15,9 +15,9 @@ app.get('/data', (req, res) => {
   });
 });
 
-app.post("/save" ,(req , res) => {
-    res.json({message: /saved success/ })
-})
+app.post('/save', (req, res) => {
+  res.json({ message: /saved success/ });
+});
 
 app.get('/message', (req, res) => {
   res.json({ message: 'Message saved successfully.' });
