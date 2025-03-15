@@ -73,8 +73,9 @@ jobs:
 
       - name: Create .env file in CI
         run: |
-           echo "${{vars.app-env}}" > .env
-           echo ${{vars.app-env}}
+           echo "${{vars.PORT}}" > .env
+           echo "${{vars.BASE_URL}}" > .env
+           echo ${{vars.PORT}}
       
       - name: Build and run docker compose 
         run: docker-compose up -d --build
