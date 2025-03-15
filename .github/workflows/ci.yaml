@@ -58,6 +58,7 @@ jobs:
 
   build_docker:
     needs: test
+    environment: app-env
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
