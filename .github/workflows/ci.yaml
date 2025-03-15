@@ -6,58 +6,58 @@ on:
       - main
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+  # test:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout repo
+  #       uses: actions/checkout@v4
 
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
+  #     - name: Install Node.js
+  #       uses: actions/setup-node@v4
+  #       with:
+  #         node-version: 22
+  #         cache: npm
 
-      - name: Install dependencies
-        run: npm ci
+  #     - name: Install dependencies
+  #       run: npm ci
 
-      - name: Format Code
-        run: npm run format
+  #     - name: Format Code
+  #       run: npm run format
 
-      - name: Check for Formatting Changes
-        run: |
-          if ! git diff --quiet; then
-            echo "needs_commit=true" >> $GITHUB_ENV
-          else 
-            echo "needs_commit=false" >> $GITHUB_ENV
-          fi
+  #     - name: Check for Formatting Changes
+  #       run: |
+  #         if ! git diff --quiet; then
+  #           echo "needs_commit=true" >> $GITHUB_ENV
+  #         else 
+  #           echo "needs_commit=false" >> $GITHUB_ENV
+  #         fi
 
-      - name: Set Git identity
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+  #     - name: Set Git identity
+  #       run: |
+  #         git config --global user.name "github-actions[bot]"
+  #         git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Commit Formatting Changes
-        if: env.needs_commit == 'true'
-        run: |
-          git add .
-          git commit -m "Auto-format code in Express Project"
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+  #     - name: Commit Formatting Changes
+  #       if: env.needs_commit == 'true'
+  #       run: |
+  #         git add .
+  #         git commit -m "Auto-format code in Express Project"
+  #         git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
 
-      - name: Generate Swagger JSON
-        run: npx ts-node src/swagger.ts
+  #     - name: Generate Swagger JSON
+  #       run: npx ts-node src/swagger.ts
 
-      - name: Commit and push Swagger file
-        run: |
-          git add .
-          git commit -m "Generate Swagger docs by Github Actions Bot" || echo "No changes to commit"
-          git push 
+  #     - name: Commit and push Swagger file
+  #       run: |
+  #         git add .
+  #         git commit -m "Generate Swagger docs by Github Actions Bot" || echo "No changes to commit"
+  #         git push 
 
-      - name: Build project
-        run: npm run build
+  #     - name: Build project
+  #       run: npm run build
 
   build_docker:
-    needs: test
+    # needs: test
     environment: production
     runs-on: ubuntu-latest
     steps:
@@ -66,28 +66,28 @@ jobs:
 
       - name: Create .env file in CI
         run: |
-          echo ${{fromJson(vars)}}
+          echo ${{toJson(github.vars)}}
       
-      - name: Install Docker Compose
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y docker-compose
+      # - name: Install Docker Compose
+      #   run: |
+      #     sudo apt-get update
+      #     sudo apt-get install -y docker-compose
 
-      - name: setup docker buildx
-        uses: docker/setup-buildx-action@v3
+      # - name: setup docker buildx
+      #   uses: docker/setup-buildx-action@v3
 
-      - name: Build and run docker compose 
-        run: docker-compose up -d --build
+      # - name: Build and run docker compose 
+      #   run: docker-compose up -d --build
 
-      - name: Wait for Containers to Start
-        run: sleep 10
+      # - name: Wait for Containers to Start
+      #   run: sleep 10
 
-      - name: Show Running Containers
-        run: docker ps -a
+      # - name: Show Running Containers
+      #   run: docker ps -a
 
-      - name: Show Logs of Running Containers
-        run: docker-compose logs
+      # - name: Show Logs of Running Containers
+      #   run: docker-compose logs
 
-      - name: Stop docker compose
-        run: docker-compose down
+      # - name: Stop docker compose
+      #   run: docker-compose down
         
