@@ -67,8 +67,8 @@ jobs:
       - name: Create .env file in CI
         run: |
           sudo apt-get install jq
-          echo '${{toJson(vars)}}' > vars.json
-          jq -r 'to_entries | .[] | "(.key)=(.value)"' vars.json > .env
+          echo "${{toJson(vars)}}" > vars.json
+          jq -r 'to_entries | .[] | "\(.key)=\(.value)"' vars.json > .env
           cat vars.json
           cat .env
       
