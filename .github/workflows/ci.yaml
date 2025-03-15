@@ -77,7 +77,7 @@ jobs:
            echo ${{vars}}
            echo ${{toJson(vars)}}
            echo "${{vars.PORT}}" > .env
-           echo "\n${{vars.BASE_URL}}" > .env
+           echo "${{vars.BASE_URL}}" > .env
            echo ${{toJson(vars.PORT)}}
            echo ${{toJson(env.PORT)}}
            echo ${{toJson(secrets.PORT)}}
