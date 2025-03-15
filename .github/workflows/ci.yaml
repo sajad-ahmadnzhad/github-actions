@@ -63,35 +63,32 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
-
-      - name: Create .env file in CI
-        run: |
-          sudo apt-get install jq
-          echo "${{toJson(vars)}}" > vars.json
-          jq -r 'to_entries | .[] | "\(.key)=\(.value)"' vars.json > .env
-          cat vars.json
-          cat .env
       
-      - name: Install Docker Compose
+      - name: Env 
         run: |
-          sudo apt-get update
-          sudo apt-get install -y docker-compose
+          echo ${{vars.PORT}}
+          echo ${{vars.API_KEY}}
 
-      - name: setup docker buildx
-        uses: docker/setup-buildx-action@v3
+      # - name: Install Docker Compose
+      #   run: |
+      #     sudo apt-get update
+      #     sudo apt-get install -y docker-compose
 
-      - name: Build and run docker compose 
-        run: docker-compose up -d --build
+      # - name: setup docker buildx
+      #   uses: docker/setup-buildx-action@v3
 
-      - name: Wait for Containers to Start
-        run: sleep 10
+      # - name: Build and run docker compose 
+      #   run: docker-compose up -d --build
 
-      - name: Show Running Containers
-        run: docker ps -a
+      # - name: Wait for Containers to Start
+      #   run: sleep 10
 
-      - name: Show Logs of Running Containers
-        run: docker-compose logs
+      # - name: Show Running Containers
+      #   run: docker ps -a
 
-      - name: Stop docker compose
-        run: docker-compose down
+      # - name: Show Logs of Running Containers
+      #   run: docker-compose logs
+
+      # - name: Stop docker compose
+      #   run: docker-compose down
         
