@@ -23,7 +23,7 @@ app.get('/message', (req, res) => {
   res.json({ message: 'Message saved successfully.' });
 });
 
-console.log(process.env.PORT, process.env.BASE_URL , process.env.API_KEY);
+console.log(process.env.PORT, process.env.BASE_URL, process.env.API_KEY);
 
 app.listen(process.env.PORT, () => {
   console.log('App running on port 3000');
