@@ -66,7 +66,8 @@ jobs:
 
       - name: Create .env file in CI
         run: |
-          echo ${{toJson(vars)}}
+          print ${{toJson(vars)}}
+          printf ${{toJson(vars)}}
           echo ${{toJson(env)}}
       
       # - name: Install Docker Compose
