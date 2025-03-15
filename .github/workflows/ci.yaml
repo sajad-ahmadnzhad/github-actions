@@ -75,16 +75,7 @@ jobs:
         run: echo "${{env.app-env}}" > .env
       
       - name: Build and run docker compose 
-        run: docker-compose up -d --build
-
-      - name: Wait for Containers to Start
-        run: sleep 10
-
-      - name: Show Running Containers
-        run: docker ps -a
-
-      - name: Show Logs of Running Containers
-        run: docker-compose logs
+        run: docker-compose up --build
 
       - name: Stop docker compose
         run: docker-compose down
