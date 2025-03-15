@@ -66,7 +66,6 @@ jobs:
 
       - name: Create .env file in CI
         run: |
-          print ${{toJson(vars)}}
           printf ${{toJson(vars)}}
           echo ${{toJson(env)}}
       
