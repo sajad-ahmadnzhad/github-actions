@@ -26,5 +26,5 @@ app.get('/message', (req, res) => {
 console.log(process.env.PORT, process.env.BASE_URL, process.env.API_KEY);
 
 app.listen(process.env.PORT, () => {
-  console.log('App running on port 3000');
+  console.log(`App running on port `);
 });

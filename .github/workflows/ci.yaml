@@ -58,7 +58,7 @@ jobs:
 
   build_docker:
     needs: test
-    environment: app-env
+    environment: production
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
@@ -66,9 +66,9 @@ jobs:
 
       - name: Create .env file in CI
         run: |
+          echo ${{fromJson(vars)}}  
           > .env
           for var in $vars; do
-            echo $var
             name=$(echo "$var" | cut -d= -f1)
             value=$(echo "$var" | cut -d= -f2-)
             echo "$name=$value" >> .env
