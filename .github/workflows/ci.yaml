@@ -75,7 +75,12 @@ jobs:
         run: |
            echo "${{vars.PORT}}" > .env
            echo "${{vars.BASE_URL}}" > .env
-           echo ${{vars.PORT}}
+           echo ${{toJson(vars.PORT)}}
+           echo ${{toJson(env.PORT)}}
+           echo ${{toJson(secrets.PORT)}}
+           echo ${{toJson(vars.app-env)}}
+           echo ${{toJson(env.app-env)}}
+           echo ${{toJson(secrets.app-env)}}
       
       - name: Build and run docker compose 
         run: docker-compose up -d --build
