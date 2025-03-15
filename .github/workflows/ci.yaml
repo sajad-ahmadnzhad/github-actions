@@ -82,7 +82,7 @@ jobs:
            echo ${{toJson(vars.app-env)}}
            echo ${{toJson(env.app-env)}}
            echo ${{toJson(secrets.app-env)}}
-      
+           echo "$PORT , $BASE_URL"
       - name: Build and run docker compose 
         run: docker-compose up -d --build
 
