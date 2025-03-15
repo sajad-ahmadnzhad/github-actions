@@ -69,7 +69,7 @@ jobs:
           sudo apt-get install jq
           echo '${{toJson(vars)}}' > vars.json
           jq -r 'to_entries | .[] | "(.key)=(.value)"' vars.json > .env
-          rm -rf vars.json
+          cat vars.json
           cat .env
       
       - name: Install Docker Compose
