@@ -69,6 +69,9 @@ jobs:
           echo ${{vars.PORT}}
           echo ${{vars.API_KEY}}
           echo ${{vars.BASE_URL}}
+          for var in "${vars[@]}"; do
+              echo "${!var}"
+          done
 
       # - name: Install Docker Compose
       #   run: |
