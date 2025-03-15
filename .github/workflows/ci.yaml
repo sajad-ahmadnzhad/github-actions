@@ -70,7 +70,7 @@ jobs:
           echo '${{toJson(vars)}}' > vars.json
           jq -r 'to_entries | .[] | "(.key)=(.value)"' vars.json > .env
           rm -rf vars.json
-          cat > .env
+          cat .env
       
       - name: Install Docker Compose
         run: |
