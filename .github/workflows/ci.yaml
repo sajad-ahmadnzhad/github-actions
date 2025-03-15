@@ -72,26 +72,26 @@ jobs:
           rm -rf vars.json
           cat > .env
       
-      # - name: Install Docker Compose
-      #   run: |
-      #     sudo apt-get update
-      #     sudo apt-get install -y docker-compose
+      - name: Install Docker Compose
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker-compose
 
-      # - name: setup docker buildx
-      #   uses: docker/setup-buildx-action@v3
+      - name: setup docker buildx
+        uses: docker/setup-buildx-action@v3
 
-      # - name: Build and run docker compose 
-      #   run: docker-compose up -d --build
+      - name: Build and run docker compose 
+        run: docker-compose up -d --build
 
-      # - name: Wait for Containers to Start
-      #   run: sleep 10
+      - name: Wait for Containers to Start
+        run: sleep 10
 
-      # - name: Show Running Containers
-      #   run: docker ps -a
+      - name: Show Running Containers
+        run: docker ps -a
 
-      # - name: Show Logs of Running Containers
-      #   run: docker-compose logs
+      - name: Show Logs of Running Containers
+        run: docker-compose logs
 
-      # - name: Stop docker compose
-      #   run: docker-compose down
+      - name: Stop docker compose
+        run: docker-compose down
         
