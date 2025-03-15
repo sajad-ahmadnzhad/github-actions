@@ -68,6 +68,7 @@ jobs:
         run: |
           > .env
           for var in $vars; do
+            echo $var
             name=$(echo "$var" | cut -d= -f1)
             value=$(echo "$var" | cut -d= -f2-)
             echo "$name=$value" >> .env
