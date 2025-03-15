@@ -68,6 +68,7 @@ jobs:
         run: |
           echo ${{vars.PORT}}
           echo ${{vars.API_KEY}}
+          echo ${{vars.BASE_URL}}
 
       # - name: Install Docker Compose
       #   run: |
